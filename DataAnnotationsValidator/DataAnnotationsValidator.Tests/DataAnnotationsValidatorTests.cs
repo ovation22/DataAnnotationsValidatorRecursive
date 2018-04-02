@@ -39,8 +39,8 @@ namespace DataAnnotationsValidator.Tests
 
             Assert.IsFalse(result);
             Assert.AreEqual(2, validationResults.Count);
-            Assert.AreEqual(1, validationResults.ToList().Count(x => x.ErrorMessage == "Parent PropertyA is required"));
-            Assert.AreEqual(1, validationResults.ToList().Count(x => x.ErrorMessage == "Parent PropertyB is required"));
+            Assert.AreEqual(1, validationResults.Count(x => x.ErrorMessage == "Parent PropertyA is required"));
+            Assert.AreEqual(1, validationResults.Count(x => x.ErrorMessage == "Parent PropertyB is required"));
         }
 
         [Test]
@@ -101,24 +101,27 @@ namespace DataAnnotationsValidator.Tests
         public void TryValidateObjectRecursive_returns_errors_when_grandchild_class_has_invalid_properties()
         {
             var parent = new Parent { PropertyA = 1, PropertyB = 1 };
-            parent.Child = new Child { Parent = parent, PropertyA = 1, PropertyB = 1 };
-            parent.Child.GrandChildren = new[] { new GrandChild { PropertyA = 11, PropertyB = 11 } };
+            parent.Child = new Child
+            {
+                Parent = parent,
+                PropertyA = 1,
+                PropertyB = 1,
+                GrandChildren = new[] {new GrandChild {PropertyA = 11, PropertyB = 11}}
+            };
             var validationResults = new List<ValidationResult>();
 
             var result = _validator.TryValidateObjectRecursive(parent, validationResults);
 
             Assert.IsFalse(result);
             Assert.AreEqual(2, validationResults.Count);
-            Assert.AreEqual(1, validationResults.ToList().Count(x => x.ErrorMessage == "GrandChild PropertyA not within range"));
-            Assert.AreEqual(1, validationResults.ToList().Count(x => x.ErrorMessage == "GrandChild PropertyB not within range"));
+            Assert.AreEqual(1, validationResults.Count(x => x.ErrorMessage == "GrandChild PropertyA not within range"));
+            Assert.AreEqual(1, validationResults.Count(x => x.ErrorMessage == "GrandChild PropertyB not within range"));
         }
 
         [Test]
         public void TryValidateObjectRecursive_passes_validation_context_items_to_all_validation_calls()
         {
-            var parent = new Parent();
-            parent.Child = new Child();
-            parent.Child.GrandChildren = new[] { new GrandChild() };
+            var parent = new Parent {Child = new Child {GrandChildren = new[] {new GrandChild()}}};
             var validationResults = new List<ValidationResult>();
 
             var contextItems = new Dictionary<object, object> { { "key", 12345 } };
@@ -133,32 +136,42 @@ namespace DataAnnotationsValidator.Tests
         public void TryValidateObject_calls_grandchild_IValidatableObject_method()
         {
             var parent = new Parent { PropertyA = 1, PropertyB = 1 };
-            parent.Child = new Child { Parent = parent, PropertyA = 1, PropertyB = 1 };
-            parent.Child.GrandChildren = new[] { new GrandChild { PropertyA = 5, PropertyB = 6 } };
+            parent.Child = new Child
+            {
+                Parent = parent,
+                PropertyA = 1,
+                PropertyB = 1,
+                GrandChildren = new[] {new GrandChild {PropertyA = 5, PropertyB = 6}}
+            };
             var validationResults = new List<ValidationResult>();
 
             var result = _validator.TryValidateObjectRecursive(parent, validationResults);
 
             Assert.IsFalse(result);
             Assert.AreEqual(1, validationResults.Count);
-            Assert.AreEqual(1, validationResults.ToList().Count(x => x.ErrorMessage == "GrandChild PropertyA and PropertyB cannot add up to more than 10"));
+            Assert.AreEqual(1, validationResults.Count(x => x.ErrorMessage == "GrandChild PropertyA and PropertyB cannot add up to more than 10"));
         }
 
         [Test]
         public void TryValidateObject_includes_errors_from_all_objects()
         {
             var parent = new Parent { PropertyA = 5, PropertyB = 6 };
-            parent.Child = new Child { Parent = parent, PropertyA = 5, PropertyB = 6 };
-            parent.Child.GrandChildren = new[] { new GrandChild { PropertyA = 5, PropertyB = 6 } };
+            parent.Child = new Child
+            {
+                Parent = parent,
+                PropertyA = 5,
+                PropertyB = 6,
+                GrandChildren = new[] {new GrandChild {PropertyA = 5, PropertyB = 6}}
+            };
             var validationResults = new List<ValidationResult>();
 
             var result = _validator.TryValidateObjectRecursive(parent, validationResults);
 
             Assert.IsFalse(result);
             Assert.AreEqual(3, validationResults.Count);
-            Assert.AreEqual(1, validationResults.ToList().Count(x => x.ErrorMessage == "Parent PropertyA and PropertyB cannot add up to more than 10"));
-            Assert.AreEqual(1, validationResults.ToList().Count(x => x.ErrorMessage == "Child PropertyA and PropertyB cannot add up to more than 10"));
-            Assert.AreEqual(1, validationResults.ToList().Count(x => x.ErrorMessage == "GrandChild PropertyA and PropertyB cannot add up to more than 10"));
+            Assert.AreEqual(1, validationResults.Count(x => x.ErrorMessage == "Parent PropertyA and PropertyB cannot add up to more than 10"));
+            Assert.AreEqual(1, validationResults.Count(x => x.ErrorMessage == "Child PropertyA and PropertyB cannot add up to more than 10"));
+            Assert.AreEqual(1, validationResults.Count(x => x.ErrorMessage == "GrandChild PropertyA and PropertyB cannot add up to more than 10"));
         }
 
         [Test]

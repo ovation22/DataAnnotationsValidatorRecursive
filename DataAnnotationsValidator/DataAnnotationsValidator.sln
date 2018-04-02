@@ -1,23 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2005
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAnnotationsValidator.Tests", "DataAnnotationsValidator.Tests\DataAnnotationsValidator.Tests.csproj", "{019E325C-9923-4643-8834-1A301F148093}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAnnotationsValidator", "DataAnnotationsValidator\DataAnnotationsValidator.csproj", "{3D85AC0B-2035-41D8-A27C-4D4695198AD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAnnotationsValidator", "DataAnnotationsValidator\DataAnnotationsValidator.csproj", "{218B0C2C-19AD-4C7B-B583-840FF755A76D}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{AC4200BF-B65D-4BC7-B12B-53617385CC56}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{01E8FDFE-435E-4F24-AD27-D4DAA621523B}"
-	ProjectSection(SolutionItems) = preProject
-		DataAnnotationsValidatorRecursive.snk = DataAnnotationsValidatorRecursive.snk
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAnnotationsValidator.Tests", "DataAnnotationsValidator.Tests\DataAnnotationsValidator.Tests.csproj", "{88FC5CB7-43CA-41CB-A7F1-1FE42CF2C2E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,16 +13,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{019E325C-9923-4643-8834-1A301F148093}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{019E325C-9923-4643-8834-1A301F148093}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{019E325C-9923-4643-8834-1A301F148093}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{019E325C-9923-4643-8834-1A301F148093}.Release|Any CPU.Build.0 = Release|Any CPU
-		{218B0C2C-19AD-4C7B-B583-840FF755A76D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{218B0C2C-19AD-4C7B-B583-840FF755A76D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{218B0C2C-19AD-4C7B-B583-840FF755A76D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{218B0C2C-19AD-4C7B-B583-840FF755A76D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D85AC0B-2035-41D8-A27C-4D4695198AD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D85AC0B-2035-41D8-A27C-4D4695198AD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D85AC0B-2035-41D8-A27C-4D4695198AD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D85AC0B-2035-41D8-A27C-4D4695198AD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88FC5CB7-43CA-41CB-A7F1-1FE42CF2C2E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88FC5CB7-43CA-41CB-A7F1-1FE42CF2C2E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88FC5CB7-43CA-41CB-A7F1-1FE42CF2C2E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88FC5CB7-43CA-41CB-A7F1-1FE42CF2C2E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {03929DF6-9EF3-4B61-9E9D-06A75F56BD9F}
 	EndGlobalSection
 EndGlobal
