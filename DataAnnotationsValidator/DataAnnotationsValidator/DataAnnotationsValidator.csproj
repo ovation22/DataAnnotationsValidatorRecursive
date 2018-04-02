@@ -9,15 +9,11 @@
     <Description>Forked from DataAnnotationsValidator by Mike Reust. Allows scanning object graph and validates every object using .NET standatd System.ComponentModel.DataAnnotations.Validator</Description>
     <Copyright>Copyright © 2018</Copyright>
     <PackageTags>DataAnnotation validation validator .netcore</PackageTags>
-    <AssemblyVersion>1.0.2.0</AssemblyVersion>
-    <FileVersion>1.0.2.0</FileVersion>
+    <AssemblyVersion>1.0.3.0</AssemblyVersion>
+    <FileVersion>1.0.3.0</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/ovation22/DataAnnotationsValidatorRecursive</RepositoryUrl>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="NuGet.CommandLine" Version="4.5.1" />
-  </ItemGroup>
 
 </Project>
