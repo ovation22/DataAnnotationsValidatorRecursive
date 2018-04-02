@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Reflection;
 
 namespace DataAnnotationsValidator
 {
@@ -18,7 +17,7 @@ namespace DataAnnotationsValidator
             return TryValidateObjectRecursive(obj, results, new HashSet<object>(), validationContextItems);
         }
 
-        private bool TryValidateObjectRecursive<T>(T obj, List<ValidationResult> results, ISet<object> validatedObjects, IDictionary<object, object> validationContextItems = null)
+        private bool TryValidateObjectRecursive<T>(T obj, ICollection<ValidationResult> results, ISet<object> validatedObjects, IDictionary<object, object> validationContextItems = null)
         {
             //short-circuit to avoid infinit loops on cyclical object graphs
             if (validatedObjects.Contains(obj))
@@ -39,39 +38,40 @@ namespace DataAnnotationsValidator
 
                 var value = obj.GetPropertyValue(property.Name);
 
-                if (value == null) continue;
-
-                var asEnumerable = value as IEnumerable;
-                if (asEnumerable != null)
+                List<ValidationResult> nestedResults;
+                switch (value)
                 {
-                    foreach (var enumObj in asEnumerable)
-                    {
-                        if ( enumObj != null) {
-                           var nestedResults = new List<ValidationResult>();
-                           if (!TryValidateObjectRecursive(enumObj, nestedResults, validatedObjects, validationContextItems))
-                           {
-                               result = false;
-                               foreach (var validationResult in nestedResults)
-                               {
-                                   PropertyInfo property1 = property;
-                                   results.Add(new ValidationResult(validationResult.ErrorMessage, validationResult.MemberNames.Select(x => property1.Name + '.' + x)));
-                               }
-                           };
-                        }
-                    }
-                }
-                else
-                {
-                    var nestedResults = new List<ValidationResult>();
-                    if (!TryValidateObjectRecursive(value, nestedResults, validatedObjects, validationContextItems))
-                    {
-                        result = false;
-                        foreach (var validationResult in nestedResults)
+                    case null:
+                        continue;
+                    case IEnumerable asEnumerable:
+                        foreach (var enumObj in asEnumerable)
                         {
-                            PropertyInfo property1 = property;
-                            results.Add(new ValidationResult(validationResult.ErrorMessage, validationResult.MemberNames.Select(x => property1.Name + '.' + x)));
+                            if (enumObj == null) continue;
+                            nestedResults = new List<ValidationResult>();
+                            if (!TryValidateObjectRecursive(enumObj, nestedResults, validatedObjects, validationContextItems))
+                            {
+                                result = false;
+                                foreach (var validationResult in nestedResults)
+                                {
+                                    var property1 = property;
+                                    results.Add(new ValidationResult(validationResult.ErrorMessage, validationResult.MemberNames.Select(x => property1.Name + '.' + x)));
+                                }
+                            }
                         }
-                    };
+
+                        break;
+                    default:
+                        nestedResults = new List<ValidationResult>();
+                        if (!TryValidateObjectRecursive(value, nestedResults, validatedObjects, validationContextItems))
+                        {
+                            result = false;
+                            foreach (var validationResult in nestedResults)
+                            {
+                                var property1 = property;
+                                results.Add(new ValidationResult(validationResult.ErrorMessage, validationResult.MemberNames.Select(x => property1.Name + '.' + x)));
+                            }
+                        }
+                        break;
                 }
             }
 
