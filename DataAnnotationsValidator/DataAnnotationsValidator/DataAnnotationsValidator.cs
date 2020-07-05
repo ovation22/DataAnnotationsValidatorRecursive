@@ -7,9 +7,9 @@ namespace DataAnnotationsValidator
 {
     public class DataAnnotationsValidator : IDataAnnotationsValidator
     {
-        public bool TryValidateObject(object obj, ICollection<ValidationResult> results, IDictionary<object, object> validationContextItems = null)
+        public bool TryValidateObject(object obj, ICollection<ValidationResult> results, IDictionary<object, object> validationContextItems = null, IServiceProvider serviceProvider = null)
         {
-            return Validator.TryValidateObject(obj, new ValidationContext(obj, null, validationContextItems), results, true);
+            return Validator.TryValidateObject(obj, new ValidationContext(obj, serviceProvider, validationContextItems), results, true);
         }
 
         public bool TryValidateObjectRecursive<T>(T obj, List<ValidationResult> results, IDictionary<object, object> validationContextItems = null)
