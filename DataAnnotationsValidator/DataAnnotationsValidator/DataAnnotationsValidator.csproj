@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>DataAnnotationsValidator.NETCore</AssemblyName>
     <RootNamespace>DataAnnotationsValidator</RootNamespace>
     <PackageLicenseUrl>https://github.com/ovation22/DataAnnotationsValidatorRecursive/blob/master/License.md</PackageLicenseUrl>
@@ -15,5 +15,9 @@
     <RepositoryUrl>https://github.com/ovation22/DataAnnotationsValidatorRecursive</RepositoryUrl>
     <Version>1.0.3</Version>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
+  </ItemGroup>
 
 </Project>
