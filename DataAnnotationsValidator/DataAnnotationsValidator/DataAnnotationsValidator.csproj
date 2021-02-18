@@ -1,19 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
-    <AssemblyName>DataAnnotationsValidator.NETCore</AssemblyName>
-    <RootNamespace>DataAnnotationsValidator</RootNamespace>
-    <PackageLicenseUrl>https://github.com/ovation22/DataAnnotationsValidatorRecursive/blob/master/License.md</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/ovation22/DataAnnotationsValidatorRecursive</PackageProjectUrl>
-    <Description>Forked from DataAnnotationsValidator by Mike Reust. Allows scanning object graph and validates every object using .NET standatd System.ComponentModel.DataAnnotations.Validator</Description>
-    <Copyright>Copyright © 2018</Copyright>
-    <PackageTags>DataAnnotation validation validator .netcore</PackageTags>
-    <AssemblyVersion>1.0.3.0</AssemblyVersion>
-    <FileVersion>1.0.3.0</FileVersion>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <RepositoryUrl>https://github.com/ovation22/DataAnnotationsValidatorRecursive</RepositoryUrl>
-    <Version>1.0.3</Version>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<AssemblyName>DataAnnotationsValidator.NETCore</AssemblyName>
+		<RootNamespace>DataAnnotationsValidator</RootNamespace>
+		<PackageLicenseUrl>https://github.com/ovation22/DataAnnotationsValidatorRecursive/blob/master/License.md</PackageLicenseUrl>
+		<PackageProjectUrl>https://github.com/ovation22/DataAnnotationsValidatorRecursive</PackageProjectUrl>
+		<Description>Forked from DataAnnotationsValidator by Mike Reust. Allows scanning object graph and validates every object using .NET standatd System.ComponentModel.DataAnnotations.Validator</Description>
+		<Copyright>Copyright © 2018</Copyright>
+		<PackageTags>DataAnnotation validation validator .netcore</PackageTags>
+		<AssemblyVersion>1.0.3.0</AssemblyVersion>
+		<FileVersion>1.0.3.0</FileVersion>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<RepositoryUrl>https://github.com/ovation22/DataAnnotationsValidatorRecursive</RepositoryUrl>
+		<Version>1.0.3</Version>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+	</ItemGroup>
 
 </Project>
