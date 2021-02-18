@@ -9,3 +9,4 @@ testrunner*
 TestResult.xml
 DataAnnotationsValidator/packages*
 DataAnnotationsValidator/.vs*
+/.vs
